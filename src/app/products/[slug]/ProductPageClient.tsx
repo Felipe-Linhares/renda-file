@@ -1,6 +1,7 @@
 "use client";
 
 import { products } from "@/lib/data";
+import { getAssetPath } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useState } from "react";
@@ -51,15 +52,14 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Product Images */}
           <div className="space-y-6">
-            {/* Main Image */}
+            {/* Main Image */}{" "}
             <div className="aspect-square bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-3xl overflow-hidden">
               <img
-                src={images[selectedImageIndex]}
+                src={getAssetPath(images[selectedImageIndex])}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
             </div>
-
             {/* Thumbnail Images */}
             {images.length > 1 && (
               <div className="grid grid-cols-4 gap-4">
@@ -73,8 +73,9 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
                         : "border-gray-200 hover:border-amber-300"
                     }`}
                   >
+                    {" "}
                     <img
-                      src={image}
+                      src={getAssetPath(image)}
                       alt={`${product.name} - Imagem ${index + 1}`}
                       className="w-full h-full object-cover"
                     />

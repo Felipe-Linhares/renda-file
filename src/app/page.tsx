@@ -1,6 +1,7 @@
 "use client";
 
 import { products, testimonials } from "@/lib/data";
+import { getAssetPath } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "./components/Footer";
@@ -85,8 +86,9 @@ export default function Home() {
               <div className="bg-gradient-to-br from-orange-100 to-amber-100 rounded-[1rem] p-6 aspect-square flex items-center justify-center">
                 <div className="text-center w-full h-full flex flex-col justify-between">
                   <div className="flex-1 flex items-center justify-center px-2 py-4">
+                    {" "}
                     <Image
-                      src="/svgs/tela.svg"
+                      src={getAssetPath("/svgs/tela.svg")}
                       alt="Renda Filé Artesanal"
                       width={450}
                       height={450}

@@ -1,3 +1,4 @@
+import { getAssetPath } from "@/lib/utils";
 import { CheckCircle, Heart, Shield } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -108,7 +109,7 @@ export default function HeroSection() {
                     <div className="w-full h-full flex items-center justify-center p-8">
                       {" "}
                       <Image
-                        src="/svgs/logo.svg"
+                        src={getAssetPath("/svgs/logo.svg")}
                         alt="Renda Filé de Luxo Logo"
                         width={400}
                         height={400}

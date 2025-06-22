@@ -1,4 +1,5 @@
 import { Product } from "@/lib/data";
+import { getAssetPath } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,14 +12,14 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100">
       {/* Image */}
       <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+        {" "}
         <Image
-          src={product.image}
+          src={getAssetPath(product.image)}
           alt={product.name}
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-
         {/* Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2">
           {product.isNew && (
