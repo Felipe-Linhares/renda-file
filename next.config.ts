@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
   assetPrefix: basePath,
   // Configuração adicional para GitHub Pages
   distDir: "out",
-  generateBuildId: () => "build",
+  // Remove generateBuildId para usar o hash padrão do Next.js
 };
 
 export default nextConfig;

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CSS Loading</title>
+    <link rel="stylesheet" href="/renda-file-catalogo/_next/static/css/f1c908318fac1a69.css">
+    <style>
+        body {
+            background-color: red;
+            color: white;
+            padding: 20px;
+        }
+        .test {
+            background-color: blue;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test CSS Loading</h1>
+    <p>If this page appears with default styling, the CSS is not loading.</p>
+    <div class="test">This div should be blue if inline CSS works</div>
+    <div class="bg-gradient-to-r from-amber-700 to-orange-800 text-white p-4 rounded">
+        This div should have Tailwind styling if external CSS loads
+    </div>
+    <p>CSS file path: /renda-file-catalogo/_next/static/css/f1c908318fac1a69.css</p>
+</body>
+</html>
