@@ -1,13 +1,17 @@
 import type { NextConfig } from "next";
 
+// Configuração do basePath baseado no ambiente
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const basePath = isGitHubPages ? "/renda-file-catalogo" : "";
+
 const nextConfig: NextConfig = {
-  output: 'export',
+  output: "export",
   trailingSlash: true,
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/renda-file-catalogo' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/renda-file-catalogo/' : '',
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : "",
 };
 
 export default nextConfig;
