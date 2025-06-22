@@ -1,0 +1,257 @@
+"use client";
+
+import { products } from "@/lib/data";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { useState } from "react";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import ProductCard from "../../components/ProductCard";
+
+interface ProductPageClientProps {
+  slug: string;
+}
+
+export default function ProductPageClient({ slug }: ProductPageClientProps) {
+  const product = products.find((p) => p.id === slug);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  if (!product) {
+    notFound();
+  }
+
+  const images = product.images || [product.image];
+  const relatedProducts = products
+    .filter((p) => p.category === product.category && p.id !== product.id)
+    .slice(0, 3);
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Breadcrumb */}
+        <nav className="mb-8 text-sm">
+          <div className="flex items-center space-x-2 text-gray-500">
+            <Link href="/" className="hover:text-amber-700 transition-colors">
+              Início
+            </Link>
+            <span>/</span>
+            <Link
+              href="/products"
+              className="hover:text-amber-700 transition-colors"
+            >
+              Produtos
+            </Link>
+            <span>/</span>
+            <span className="text-gray-900">{product.name}</span>
+          </div>
+        </nav>
+
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Product Images */}
+          <div className="space-y-6">
+            {/* Main Image */}
+            <div className="aspect-square bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-3xl overflow-hidden">
+              <img
+                src={images[selectedImageIndex]}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Thumbnail Images */}
+            {images.length > 1 && (
+              <div className="grid grid-cols-4 gap-4">
+                {images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`aspect-square rounded-xl overflow-hidden border-2 transition-all ${
+                      selectedImageIndex === index
+                        ? "border-amber-600 shadow-lg"
+                        : "border-gray-200 hover:border-amber-300"
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.name} - Imagem ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Product Info */}
+          <div className="space-y-8">
+            {/* Product Header */}
+            <div className="space-y-4">
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-block bg-gradient-to-r from-amber-700 to-orange-800 bg-clip-text text-transparent text-sm font-bold uppercase tracking-wide">
+                  {product.category}
+                </span>
+                {product.isNew && (
+                  <span className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                    ✨ Novo
+                  </span>
+                )}
+                {product.originalPrice && (
+                  <span className="bg-gradient-to-r from-orange-600 to-amber-700 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                    🔥 Promoção
+                  </span>
+                )}
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+                {product.name}
+              </h1>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {product.description}
+              </p>
+            </div>
+
+            {/* Product Details */}
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-amber-600">📏</span>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">
+                      Dimensões:
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      {product.dimensions}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-orange-600">🧵</span>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">
+                      Material:
+                    </p>
+                    <p className="text-sm text-gray-600">{product.material}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pricing */}
+              <div className="space-y-4 p-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl border border-amber-100">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl font-bold text-gray-900">
+                        R$ {product.price.toFixed(2)}
+                      </span>
+                      {product.originalPrice && (
+                        <span className="text-xl text-gray-400 line-through">
+                          R$ {product.originalPrice.toFixed(2)}
+                        </span>
+                      )}
+                    </div>
+                    {product.originalPrice && (
+                      <span className="text-sm text-emerald-600 font-semibold">
+                        💰 Economize R${" "}
+                        {(product.originalPrice - product.price).toFixed(2)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button className="flex-1 bg-gradient-to-r from-amber-700 to-orange-800 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:from-amber-800 hover:to-orange-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    Encomendar via WhatsApp
+                  </button>
+                  <button className="border-2 border-amber-700 text-amber-700 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-amber-700 hover:text-white transition-all duration-300">
+                    Favoritar
+                  </button>
+                </div>
+              </div>
+
+              {/* Product Features */}
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Características:
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span className="text-sm text-gray-700">
+                      100% Artesanal
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span className="text-sm text-gray-700">
+                      Feito com Amor
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span className="text-sm text-gray-700">
+                      Qualidade Premium
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span className="text-sm text-gray-700">Peça Única</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stock Status */}
+              <div className="flex items-center gap-2">
+                <div
+                  className={`w-3 h-3 rounded-full ${
+                    product.inStock ? "bg-green-500" : "bg-red-500"
+                  }`}
+                ></div>
+                <span
+                  className={`text-sm font-medium ${
+                    product.inStock ? "text-green-700" : "text-red-700"
+                  }`}
+                >
+                  {product.inStock ? "Em estoque" : "Fora de estoque"}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Related Products */}
+      {relatedProducts.length > 0 && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Produtos Relacionados
+              </h2>
+              <p className="text-xl text-gray-600">
+                Outras peças que você pode gostar
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedProducts.map((relatedProduct) => (
+                <ProductCard key={relatedProduct.id} product={relatedProduct} />
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                href="/products"
+                className="bg-gradient-to-r from-amber-700 to-orange-800 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-amber-800 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 inline-block"
+              >
+                Ver Todos os Produtos
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <Footer />
+    </div>
+  );
+}
