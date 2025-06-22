@@ -11,7 +11,10 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   basePath,
-  assetPrefix: basePath ? `${basePath}/` : "",
+  assetPrefix: basePath,
+  // Configuração adicional para GitHub Pages
+  distDir: "out",
+  generateBuildId: () => "build",
 };
 
 export default nextConfig;
