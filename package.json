@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack --port 3333 --hostname 0.0.0.0",
     "build": "next build",
-    "build:github": "cross-env GITHUB_PAGES=true next build",
+    "build:github": "cross-env NODE_ENV=production GITHUB_PAGES=true next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",
