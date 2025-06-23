@@ -11,12 +11,16 @@ export function getAssetPath(path: string): string {
   }
 
   // Verifica se está em ambiente do GitHub Pages
-  const isGitHubPages =
-    process.env.NODE_ENV === "production" &&
-    process.env.GITHUB_PAGES === "true";
+  const isProduction = process.env.NODE_ENV === "production";
+  const isGitHubPages = process.env.GITHUB_PAGES === "true";
+
+  // Também verifica se está rodando no domínio do GitHub Pages
+  const isInGitHubDomain =
+    typeof window !== "undefined" &&
+    window.location.hostname === "felipe-linhares.github.io";
 
   // Se estiver no GitHub Pages, adiciona basePath
-  if (isGitHubPages) {
+  if ((isProduction && isGitHubPages) || isInGitHubDomain) {
     return `/renda-file-catalogo${path}`;
   }
 
