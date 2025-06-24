@@ -5,11 +5,17 @@
   "scripts": {
     "dev": "next dev --turbopack --port 3333 --hostname 0.0.0.0",
     "build": "next build",
+    "build:docker": "cross-env NODE_ENV=production GITHUB_PAGES=false next build",
     "build:github": "cross-env NODE_ENV=production GITHUB_PAGES=true next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",
-    "deploy": "npm run build:github && npx gh-pages -d out"
+    "deploy": "npm run build:github && npx gh-pages -d out",
+    "docker:build": "docker build -t renda-file-catalogo .",
+    "docker:run": "docker run -p 3000:3000 renda-file-catalogo",
+    "docker:dev": "docker-compose --profile dev up renda-file-catalogo-dev",
+    "docker:prod": "docker-compose up renda-file-catalogo",
+    "docker:stop": "docker-compose down"
   },
   "dependencies": {
     "lucide-react": "^0.522.0",
