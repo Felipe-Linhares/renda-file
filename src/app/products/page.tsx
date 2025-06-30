@@ -76,7 +76,7 @@ export default function ProductsPage() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full px-6 py-4 pl-12 rounded-2xl border-2 border-amber-200 focus:ring-4 focus:ring-amber-500/20 focus:border-amber-500 transition-all duration-300 text-gray-800 placeholder-gray-500 bg-white/80 backdrop-blur-sm shadow-lg"
                 />
-                <Search className="absolute left-4 top-4.5 h-5 w-5 text-amber-500" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-amber-500" />
               </div>
             </div>
           </div>
