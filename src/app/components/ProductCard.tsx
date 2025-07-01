@@ -1,5 +1,5 @@
 import { Product } from "@/lib/data";
-import { getAssetPath } from "@/lib/utils";
+import { formatPrice, getAssetPath } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -74,18 +74,18 @@ export default function ProductCard({ product }: ProductCardProps) {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl font-bold text-gray-900">
-                    R$ {product.price.toFixed(2)}
+                    {formatPrice(product.price)}
                   </span>
                   {product.originalPrice && (
                     <span className="text-lg text-gray-400 line-through">
-                      R$ {product.originalPrice.toFixed(2)}
+                      {formatPrice(product.originalPrice)}
                     </span>
                   )}
                 </div>
                 {product.originalPrice && (
                   <span className="text-sm text-emerald-600 font-semibold">
-                    💰 Economize R${" "}
-                    {(product.originalPrice - product.price).toFixed(2)}
+                    💰 Economize{" "}
+                    {formatPrice(product.originalPrice - product.price)}
                   </span>
                 )}
               </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { products } from "@/lib/data";
-import { getAssetPath } from "@/lib/utils";
+import { formatPrice, getAssetPath } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useState } from "react";
@@ -143,25 +143,48 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
                   <div className="space-y-2">
                     <div className="flex items-center gap-3">
                       <span className="text-3xl font-bold text-gray-900">
-                        R$ {product.price.toFixed(2)}
+                        {formatPrice(product.price)}
                       </span>
                       {product.originalPrice && (
                         <span className="text-xl text-gray-400 line-through">
-                          R$ {product.originalPrice.toFixed(2)}
+                          {formatPrice(product.originalPrice)}
                         </span>
                       )}
                     </div>
                     {product.originalPrice && (
                       <span className="text-sm text-emerald-600 font-semibold">
-                        💰 Economize R${" "}
-                        {(product.originalPrice - product.price).toFixed(2)}
+                        💰 Economize{" "}
+                        {formatPrice(product.originalPrice - product.price)}
                       </span>
                     )}
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <button className="flex-1 bg-gradient-to-r from-amber-700 to-orange-800 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:from-amber-800 hover:to-orange-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                  <button
+                    onClick={() => {
+                      const phone = "+558888476263";
+                      const message = `Olá! Tenho interesse no produto:
+
+📦 *${product.name}*
+💰 Preço: ${formatPrice(product.price)}
+📏 Dimensões: ${product.dimensions}
+🧵 Material: ${product.material}
+
+Gostaria de saber mais detalhes sobre:
+• Disponibilidade
+• Prazo de entrega
+• Formas de pagamento
+• Frete
+
+Aguardo seu contato!`;
+                      const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(
+                        message
+                      )}`;
+                      window.open(whatsappUrl, "_blank");
+                    }}
+                    className="flex-1 bg-gradient-to-r from-amber-700 to-orange-800 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:from-amber-800 hover:to-orange-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
                     Encomendar via WhatsApp
                   </button>
                   <button className="border-2 border-amber-700 text-amber-700 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-amber-700 hover:text-white transition-all duration-300">
@@ -203,17 +226,9 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
 
               {/* Stock Status */}
               <div className="flex items-center gap-2">
-                <div
-                  className={`w-3 h-3 rounded-full ${
-                    product.inStock ? "bg-green-500" : "bg-red-500"
-                  }`}
-                ></div>
-                <span
-                  className={`text-sm font-medium ${
-                    product.inStock ? "text-green-700" : "text-red-700"
-                  }`}
-                >
-                  {product.inStock ? "Em estoque" : "Fora de estoque"}
+                <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                <span className="text-sm font-medium text-orange-700">
+                  🎨 Feito por encomenda
                 </span>
               </div>
             </div>

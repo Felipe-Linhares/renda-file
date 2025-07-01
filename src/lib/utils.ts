@@ -26,3 +26,13 @@ export function getAssetPath(path: string): string {
 
   return path;
 }
+
+// Função para formatar preços no padrão brasileiro
+export function formatPrice(price: number): string {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
+}
