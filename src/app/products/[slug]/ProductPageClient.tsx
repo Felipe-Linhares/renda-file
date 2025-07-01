@@ -2,6 +2,7 @@
 
 import { products } from "@/lib/data";
 import { formatPrice, getAssetPath } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -97,9 +98,11 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
           <div className="space-y-6">
             {/* Main Image */}{" "}
             <div className="aspect-square bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-3xl overflow-hidden">
-              <img
+              <Image
                 src={getAssetPath(images[selectedImageIndex])}
                 alt={product.name}
+                width={600}
+                height={600}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -117,9 +120,11 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
                     }`}
                   >
                     {" "}
-                    <img
+                    <Image
                       src={getAssetPath(image)}
                       alt={`${product.name} - Imagem ${index + 1}`}
+                      width={120}
+                      height={120}
                       className="w-full h-full object-cover"
                     />
                   </button>

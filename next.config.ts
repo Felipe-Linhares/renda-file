@@ -7,10 +7,6 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   distDir: "out",
-  // Configurações para SEO
-  experimental: {
-    optimizeCss: true,
-  },
   compress: true,
 };
 
