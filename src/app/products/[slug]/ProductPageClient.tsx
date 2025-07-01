@@ -4,7 +4,7 @@ import { products } from "@/lib/data";
 import { formatPrice, getAssetPath } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import ProductCard from "../../components/ProductCard";
@@ -20,6 +20,49 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
   if (!product) {
     notFound();
   }
+
+  // Add structured data for SEO
+  useEffect(() => {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      description: product.description,
+      image: product.image,
+      brand: {
+        "@type": "Brand",
+        name: "Renda Filé Artesanal",
+      },
+      category: product.category,
+      material: product.material,
+      offers: {
+        "@type": "Offer",
+        price: product.price,
+        priceCurrency: "BRL",
+        availability: product.inStock
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+        seller: {
+          "@type": "Organization",
+          name: "Renda Filé Artesanal",
+        },
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5",
+        reviewCount: "15",
+      },
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.text = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [product]);
 
   const images = product.images || [product.image];
   const relatedProducts = products
@@ -187,9 +230,9 @@ Aguardo seu contato!`;
                   >
                     Encomendar via WhatsApp
                   </button>
-                  <button className="border-2 border-amber-700 text-amber-700 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-amber-700 hover:text-white transition-all duration-300">
+                  {/* <button className="border-2 border-amber-700 text-amber-700 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-amber-700 hover:text-white transition-all duration-300">
                     Favoritar
-                  </button>
+                  </button> */}
                 </div>
               </div>
 

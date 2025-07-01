@@ -14,16 +14,18 @@ export default function HeroSection() {
           <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
             <div className="space-y-4">
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Moda Feminina em
+                Loja de Roupas em
                 <span className="bg-gradient-to-r from-amber-700 to-orange-800 bg-clip-text text-transparent">
                   {" "}
-                  Renda Filé
+                  Renda Filé Artesanal
                 </span>
               </h1>
               <p className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Peças únicas de renda filé moda praia criadas com amor e
-                dedicação. Descubra vestidos, saias, conjuntos e calças com a
-                delicadeza e elegância da renda filé artesanal.
+                Peças únicas de renda filé artesanal criadas com amor e
+                dedicação. Descubra vestidos elegantes, saias sofisticadas e
+                calças exclusivas com a delicadeza e elegância da tradição
+                brasileira. Loja especializada em roupas artesanais e moda praia
+                sofisticada.
               </p>
             </div>{" "}
             {/* Features */}

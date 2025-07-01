@@ -14,13 +14,14 @@ export function getAssetPath(path: string): string {
   const isProduction = process.env.NODE_ENV === "production";
   const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
-  // Também verifica se está rodando no domínio do GitHub Pages
-  const isInGitHubDomain =
+  // Também verifica se está rodando no domínio próprio
+  const isInCustomDomain =
     typeof window !== "undefined" &&
-    window.location.hostname === "felipe-linhares.github.io";
+    window.location.hostname === "www.rendafiledeluxo.com.br";
 
   // Se estiver no GitHub Pages, adiciona basePath
-  if ((isProduction && isGitHubPages) || isInGitHubDomain) {
+  // No domínio próprio, usa o path direto
+  if (isProduction && isGitHubPages && !isInCustomDomain) {
     return `/renda-file-catalogo${path}`;
   }
 

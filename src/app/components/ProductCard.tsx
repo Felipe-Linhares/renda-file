@@ -15,7 +15,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         {" "}
         <Image
           src={getAssetPath(product.image)}
-          alt={product.name}
+          alt={`${product.name} - ${product.category} de Renda Filé Artesanal - Loja Online`}
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
