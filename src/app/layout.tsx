@@ -77,6 +77,40 @@ export const metadata: Metadata = {
     "artesanato nordestino",
     "cultura brasileira",
     "tradição têxtil",
+    // Palavras-chave para busca local e específica
+    "onde comprar renda filé",
+    "renda filé online",
+    "renda filé brasil",
+    "renda filé ceará",
+    "renda filé nordeste",
+    "renda de lacê",
+    "rede bordada",
+    "lacê bordado",
+    "filé de renda",
+    "renda filé barata",
+    "renda filé preço",
+    "quanto custa renda filé",
+    "renda filé para casamento",
+    "renda filé festa",
+    "renda filé praia",
+    "renda filé verão",
+    "conjunto renda filé",
+    "blusa renda filé",
+    "top renda filé",
+    "renda filé branca",
+    "renda filé colorida",
+    "renda filé vintage",
+    "renda filé retro",
+    "como usar renda filé",
+    "combinar renda filé",
+    "estilo renda filé",
+    "looks renda filé",
+    "outfit renda filé",
+    "renda filé instagram",
+    "renda filé tendência",
+    "moda renda filé",
+    "roupas renda filé",
+    "peças renda filé",
   ],
   authors: [{ name: "Renda Filé Artesanal" }],
   creator: "Renda Filé Artesanal",
@@ -140,52 +174,110 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: "Renda Filé Artesanal",
-              description:
-                "Loja especializada em renda filé artesanal, oferecendo vestidos, saias e calças únicos feitos à mão. Roupas artesanais, moda praia sofisticada, peças exclusivas sob medida. Artesanato brasileiro tradicional com técnicas ancestrais.",
-              url: "https://www.rendafiledeluxo.com.br/",
-              telephone: "+55-88-8847-6263",
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "BR",
-              },
-              openingHours: "Mo-Su 08:00-20:00",
-              priceRange: "$$",
-              paymentAccepted: "WhatsApp, Pix",
-              hasOfferCatalog: {
-                "@type": "OfferCatalog",
-                name: "Catálogo de Renda Filé",
-                itemListElement: [
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Product",
-                      name: "Vestidos de Renda Filé",
-                      category: "Vestidos",
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.rendafiledeluxo.com.br/#business",
+                name: "Renda Filé de Luxo",
+                alternateName: "Renda Filé Artesanal",
+                description:
+                  "Loja especializada em renda filé artesanal, oferecendo vestidos, saias e calças únicos feitos à mão. Roupas artesanais, moda praia sofisticada, peças exclusivas sob medida. Artesanato brasileiro tradicional com técnicas ancestrais.",
+                url: "https://www.rendafiledeluxo.com.br/",
+                telephone: "+55-88-8847-6263",
+                email: "contato@rendafiledeluxo.com.br",
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "BR",
+                  addressRegion: "Brasil",
+                },
+                openingHours: "Mo-Su 08:00-20:00",
+                priceRange: "$$",
+                paymentAccepted: ["WhatsApp", "Pix", "Cartão de Crédito"],
+                hasOfferCatalog: {
+                  "@type": "OfferCatalog",
+                  name: "Catálogo de Renda Filé Artesanal",
+                  itemListElement: [
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Product",
+                        name: "Vestidos de Renda Filé Artesanal",
+                        category: "Vestidos",
+                        description:
+                          "Vestidos únicos de renda filé feitos à mão",
+                      },
                     },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Product",
-                      name: "Saias de Renda Filé",
-                      category: "Saias",
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Product",
+                        name: "Saias de Renda Filé Artesanal",
+                        category: "Saias",
+                        description:
+                          "Saias elegantes de renda filé tradicional",
+                      },
                     },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Product",
-                      name: "Calças de Renda Filé",
-                      category: "Calças",
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Product",
+                        name: "Calças de Renda Filé Artesanal",
+                        category: "Calças",
+                        description: "Calças sofisticadas de renda filé",
+                      },
                     },
-                  },
+                  ],
+                },
+                sameAs: [
+                  "https://www.instagram.com/rendafiledeluxo",
+                  "https://wa.me/5588988476263",
                 ],
               },
-            }),
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "@id": "https://www.rendafiledeluxo.com.br/#website",
+                url: "https://www.rendafiledeluxo.com.br/",
+                name: "Renda Filé de Luxo",
+                description:
+                  "Catálogo online de renda filé artesanal brasileira",
+                publisher: {
+                  "@id": "https://www.rendafiledeluxo.com.br/#business",
+                },
+                potentialAction: {
+                  "@type": "SearchAction",
+                  target: {
+                    "@type": "EntryPoint",
+                    urlTemplate:
+                      "https://www.rendafiledeluxo.com.br/products?search={search_term_string}",
+                  },
+                  "query-input": "required name=search_term_string",
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "@id": "https://www.rendafiledeluxo.com.br/#organization",
+                name: "Renda Filé de Luxo",
+                url: "https://www.rendafiledeluxo.com.br/",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.rendafiledeluxo.com.br/svgs/logo.svg",
+                },
+                foundingDate: "2024",
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "BR",
+                },
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  telephone: "+55-88-8847-6263",
+                  contactType: "customer service",
+                  availableLanguage: "Portuguese",
+                },
+              },
+            ]),
           }}
         />
       </head>
