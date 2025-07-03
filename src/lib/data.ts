@@ -382,7 +382,7 @@ export const products: Product[] = [
     material: "Fio de algodão",
   },
   {
-    id: "29",
+    id: "saia-10",
     name: "Saia Rosa Pink",
     description:
       "Saia marcante em renda filé na cor rosa pink. Tom vibrante que chama atenção e expressa confiança.",
@@ -396,7 +396,7 @@ export const products: Product[] = [
     material: "Fio de algodão",
   },
   {
-    id: "30",
+    id: "saia-11",
     name: "Saia Preta Elegante",
     description:
       "Saia clássica em renda filé preta. Peça atemporal e sofisticada, perfeita para eventos formais e ocasiões especiais.",
