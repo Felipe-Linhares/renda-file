@@ -24,16 +24,6 @@ const faqs = [
       "Sim! Trabalhamos principalmente com encomendas sob medida para garantir o caimento perfeito. Entre em contato conosco pelo WhatsApp +55 88 8847-6263 para discutir suas medidas, preferências de cores e modelos.",
   },
   {
-    question: "Quanto tempo demora para fazer uma peça?",
-    answer:
-      "O prazo varia conforme a complexidade: Blusas simples (15-20 dias), Saias (20-30 dias), Vestidos (30-45 dias), Conjuntos completos (45-60 dias). Trabalhamos com agendamento para garantir qualidade artesanal.",
-  },
-  {
-    question: "Quais os preços das peças?",
-    answer:
-      "Nossos preços variam conforme o modelo e tamanho: Vestidos a partir de R$ 200, Saias a partir de R$ 120, Calças a partir de R$ 150, Blusas a partir de R$ 80. Valores exatos dependem do modelo escolhido e personalização.",
-  },
-  {
     question: "Como cuidar das peças de renda filé?",
     answer:
       "Para preservar sua renda filé: Lave à mão com sabão neutro em água fria, não torça (apenas aperte levemente), seque à sombra em superfície plana, passe com ferro morno se necessário, guarde em local arejado.",
