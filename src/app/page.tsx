@@ -4,10 +4,12 @@ import { products, testimonials } from "@/lib/data";
 import { getAssetPath } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import ProductCard from "./components/ProductCard";
+import SEOContent from "./components/SEOContent";
 
 export default function Home() {
   const featuredProducts = products.slice(0, 6);
@@ -196,6 +198,12 @@ Aguardo seu retorno para conversarmos sobre os detalhes!`;
           </div>
         </div>
       </section>
+
+      {/* SEO Content Section */}
+      <SEOContent />
+
+      {/* FAQ Section */}
+      <FAQ />
 
       <Footer />
     </div>
