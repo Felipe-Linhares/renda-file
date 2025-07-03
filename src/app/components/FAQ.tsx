@@ -16,7 +16,7 @@ const faqs = [
   {
     question: "Como são feitas as peças de renda filé?",
     answer:
-      "Todas as nossas peças são feitas 100% à mão por artesãs especializadas. O processo inclui: criação da tela base de lacê, bordado dos motivos decorativos com fio de algodão, e acabamento final. Cada peça leva de 15 a 45 dias para ficar pronta.",
+      "Todas as nossas peças são feitas 100% à mão por artesãs especializadas. O processo inclui: criação da tela base de lacê, bordado dos motivos decorativos com fio de algodão, e acabamento final.",
   },
   {
     question: "As peças são feitas sob medida?",
