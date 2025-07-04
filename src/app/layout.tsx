@@ -195,41 +195,6 @@ export default function RootLayout({
                 openingHours: "Mo-Su 08:00-20:00",
                 priceRange: "$$",
                 paymentAccepted: ["WhatsApp", "Pix", "Cartão de Crédito"],
-                hasOfferCatalog: {
-                  "@type": "OfferCatalog",
-                  name: "Catálogo de Renda Filé Artesanal",
-                  itemListElement: [
-                    {
-                      "@type": "Offer",
-                      itemOffered: {
-                        "@type": "Product",
-                        name: "Vestidos de Renda Filé Artesanal",
-                        category: "Vestidos",
-                        description:
-                          "Vestidos únicos de renda filé feitos à mão",
-                      },
-                    },
-                    {
-                      "@type": "Offer",
-                      itemOffered: {
-                        "@type": "Product",
-                        name: "Saias de Renda Filé Artesanal",
-                        category: "Saias",
-                        description:
-                          "Saias elegantes de renda filé tradicional",
-                      },
-                    },
-                    {
-                      "@type": "Offer",
-                      itemOffered: {
-                        "@type": "Product",
-                        name: "Calças de Renda Filé Artesanal",
-                        category: "Calças",
-                        description: "Calças sofisticadas de renda filé",
-                      },
-                    },
-                  ],
-                },
                 sameAs: [
                   "https://www.instagram.com/rendafiledeluxo",
                   "https://wa.me/5588988476263",
