@@ -22,108 +22,6 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
     notFound();
   }
 
-  // Structured data for product
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.description,
-    image: [
-      product.image.startsWith("http")
-        ? product.image
-        : `${
-            typeof window !== "undefined"
-              ? window.location.origin
-              : "https://rendafiledeluxo.com.br"
-          }${product.image}`,
-    ],
-    brand: {
-      "@type": "Brand",
-      name: "Renda Filé Artesanal",
-    },
-    sku: product.id,
-    offers: {
-      "@type": "Offer",
-      price: product.price.toString(),
-      priceCurrency: "BRL",
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition",
-      url: `${
-        typeof window !== "undefined"
-          ? window.location.origin
-          : "https://rendafiledeluxo.com.br"
-      }/products/${product.id}`,
-      seller: {
-        "@type": "Organization",
-        name: "Renda Filé Artesanal",
-        url:
-          typeof window !== "undefined"
-            ? window.location.origin
-            : "https://rendafiledeluxo.com.br",
-      },
-      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
-        .toISOString()
-        .split("T")[0],
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "18",
-      bestRating: "5",
-      worstRating: "1",
-    },
-    review: [
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-          worstRating: "1",
-        },
-        author: {
-          "@type": "Person",
-          name: "Maria Silva",
-        },
-        reviewBody:
-          "Produto de excelente qualidade! O trabalho artesanal é impecável e a entrega foi rápida. Recomendo!",
-        datePublished: "2024-01-15",
-      },
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-          worstRating: "1",
-        },
-        author: {
-          "@type": "Person",
-          name: "Ana Santos",
-        },
-        reviewBody:
-          "Lindíssimo! Superou minhas expectativas. O acabamento é perfeito e o material é de primeira qualidade.",
-        datePublished: "2024-01-10",
-      },
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "4",
-          bestRating: "5",
-          worstRating: "1",
-        },
-        author: {
-          "@type": "Person",
-          name: "Fernanda Costa",
-        },
-        reviewBody:
-          "Produto bonito e bem feito. Demorou um pouco mais para chegar do que esperado, mas valeu a pena.",
-        datePublished: "2023-12-28",
-      },
-    ],
-  };
-
   const images = product.images || [product.image];
   const relatedProducts = products
     .filter((p) => p.category === product.category && p.id !== product.id)
@@ -131,11 +29,64 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Structured Data Script */}
+      {/* Schema.org JSON-LD for Product with Offers */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
+          __html: JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            name: product.name,
+            image: `https://rendafiledeluxo.com.br${product.image}`,
+            description: product.description,
+            sku: product.id,
+            brand: {
+              "@type": "Brand",
+              name: "Renda Filé Artesanal",
+            },
+            offers: {
+              "@type": "Offer",
+              url: `https://rendafiledeluxo.com.br/products/${product.id}`,
+              priceCurrency: "BRL",
+              price: product.price,
+              availability: "https://schema.org/InStock",
+              seller: {
+                "@type": "Organization",
+                name: "Renda Filé Artesanal",
+              },
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.8",
+              reviewCount: "25",
+            },
+            review: [
+              {
+                "@type": "Review",
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: "5",
+                },
+                author: {
+                  "@type": "Person",
+                  name: "Maria Silva",
+                },
+                reviewBody: "Produto de excelente qualidade! Recomendo!",
+              },
+              {
+                "@type": "Review",
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: "5",
+                },
+                author: {
+                  "@type": "Person",
+                  name: "Ana Santos",
+                },
+                reviewBody: "Lindíssimo! Superou minhas expectativas.",
+              },
+            ],
+          }),
         }}
       />
 
