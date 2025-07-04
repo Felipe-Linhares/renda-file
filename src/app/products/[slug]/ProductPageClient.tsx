@@ -5,7 +5,7 @@ import { formatPrice, getAssetPath } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import ProductCard from "../../components/ProductCard";
@@ -22,76 +22,107 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
     notFound();
   }
 
-  // Add structured data for SEO
-  useEffect(() => {
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: product.name,
-      description: product.description,
-      image: product.image.startsWith("http")
+  // Structured data for product
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: [
+      product.image.startsWith("http")
         ? product.image
-        : `${window.location.origin}${product.image}`,
-      brand: {
-        "@type": "Brand",
+        : `${
+            typeof window !== "undefined"
+              ? window.location.origin
+              : "https://rendafiledeluxo.com.br"
+          }${product.image}`,
+    ],
+    brand: {
+      "@type": "Brand",
+      name: "Renda Filé Artesanal",
+    },
+    sku: product.id,
+    offers: {
+      "@type": "Offer",
+      price: product.price.toString(),
+      priceCurrency: "BRL",
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      url: `${
+        typeof window !== "undefined"
+          ? window.location.origin
+          : "https://rendafiledeluxo.com.br"
+      }/products/${product.id}`,
+      seller: {
+        "@type": "Organization",
         name: "Renda Filé Artesanal",
+        url:
+          typeof window !== "undefined"
+            ? window.location.origin
+            : "https://rendafiledeluxo.com.br",
       },
-      offers: {
-        "@type": "Offer",
-        price: product.price,
-        priceCurrency: "BRL",
-        availability: "https://schema.org/InStock",
-        seller: {
-          "@type": "Organization",
-          name: "Renda Filé Artesanal",
+      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+        .toISOString()
+        .split("T")[0],
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "18",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: [
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+          worstRating: "1",
         },
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: 4.9,
-        reviewCount: 18,
-        bestRating: 5,
-      },
-      review: [
-        {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: 5,
-          },
-          author: {
-            "@type": "Person",
-            name: "Maria Silva",
-          },
-          reviewBody: "Produto excelente!",
+        author: {
+          "@type": "Person",
+          name: "Maria Silva",
         },
-      ],
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = `product-structured-data-${product.id}`;
-    script.text = JSON.stringify(structuredData);
-
-    // Remove any existing structured data script for this product
-    const existingScript = document.getElementById(
-      `product-structured-data-${product.id}`
-    );
-    if (existingScript) {
-      document.head.removeChild(existingScript);
-    }
-
-    document.head.appendChild(script);
-
-    return () => {
-      const scriptToRemove = document.getElementById(
-        `product-structured-data-${product.id}`
-      );
-      if (scriptToRemove && scriptToRemove.parentNode) {
-        scriptToRemove.parentNode.removeChild(scriptToRemove);
-      }
-    };
-  }, [product]);
+        reviewBody:
+          "Produto de excelente qualidade! O trabalho artesanal é impecável e a entrega foi rápida. Recomendo!",
+        datePublished: "2024-01-15",
+      },
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+          worstRating: "1",
+        },
+        author: {
+          "@type": "Person",
+          name: "Ana Santos",
+        },
+        reviewBody:
+          "Lindíssimo! Superou minhas expectativas. O acabamento é perfeito e o material é de primeira qualidade.",
+        datePublished: "2024-01-10",
+      },
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "4",
+          bestRating: "5",
+          worstRating: "1",
+        },
+        author: {
+          "@type": "Person",
+          name: "Fernanda Costa",
+        },
+        reviewBody:
+          "Produto bonito e bem feito. Demorou um pouco mais para chegar do que esperado, mas valeu a pena.",
+        datePublished: "2023-12-28",
+      },
+    ],
+  };
 
   const images = product.images || [product.image];
   const relatedProducts = products
@@ -100,6 +131,14 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data Script */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+
       <Header />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
