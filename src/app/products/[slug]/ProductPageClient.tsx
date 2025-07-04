@@ -29,106 +29,41 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
       "@type": "Product",
       name: product.name,
       description: product.description,
-      image:
-        Array.isArray(product.images) && product.images.length > 0
-          ? product.images.map((img) =>
-              img.startsWith("http") ? img : `${window.location.origin}${img}`
-            )
-          : [
-              product.image.startsWith("http")
-                ? product.image
-                : `${window.location.origin}${product.image}`,
-            ],
+      image: product.image.startsWith("http")
+        ? product.image
+        : `${window.location.origin}${product.image}`,
       brand: {
         "@type": "Brand",
         name: "Renda Filé Artesanal",
       },
-      category: product.category,
-      sku: product.id,
       offers: {
         "@type": "Offer",
-        price: product.price.toString(),
+        price: product.price,
         priceCurrency: "BRL",
-        availability: product.inStock
-          ? "https://schema.org/InStock"
-          : "https://schema.org/OutOfStock",
-        url: `${window.location.origin}/products/${product.id}`,
+        availability: "https://schema.org/InStock",
         seller: {
           "@type": "Organization",
           name: "Renda Filé Artesanal",
         },
-        priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
-          .toISOString()
-          .split("T")[0],
-        itemCondition: "https://schema.org/NewCondition",
       },
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: "4.9",
-        bestRating: "5",
-        worstRating: "1",
-        reviewCount: "18",
+        ratingValue: 4.9,
+        reviewCount: 18,
+        bestRating: 5,
       },
       review: [
         {
           "@type": "Review",
           reviewRating: {
             "@type": "Rating",
-            ratingValue: "5",
-            bestRating: "5",
+            ratingValue: 5,
           },
           author: {
             "@type": "Person",
             name: "Maria Silva",
           },
-          reviewBody:
-            "Produto de excelente qualidade! O trabalho artesanal é impecável e a entrega foi rápida. Recomendo!",
-          datePublished: "2024-01-15",
-        },
-        {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "5",
-            bestRating: "5",
-          },
-          author: {
-            "@type": "Person",
-            name: "Ana Santos",
-          },
-          reviewBody:
-            "Lindíssimo! Superou minhas expectativas. O acabamento é perfeito e o material é de primeira qualidade.",
-          datePublished: "2024-01-10",
-        },
-        {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "5",
-            bestRating: "5",
-          },
-          author: {
-            "@type": "Person",
-            name: "Carla Oliveira",
-          },
-          reviewBody:
-            "Peça única e exclusiva! Chegou exatamente como nas fotos. Muito satisfeita com a compra.",
-          datePublished: "2024-01-05",
-        },
-        {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "4",
-            bestRating: "5",
-          },
-          author: {
-            "@type": "Person",
-            name: "Fernanda Costa",
-          },
-          reviewBody:
-            "Produto bonito e bem feito. Demorou um pouco mais para chegar do que esperado, mas valeu a pena.",
-          datePublished: "2023-12-28",
+          reviewBody: "Produto excelente!",
         },
       ],
     };

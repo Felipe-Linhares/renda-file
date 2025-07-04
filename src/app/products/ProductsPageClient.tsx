@@ -2,7 +2,7 @@
 
 import { categories, products } from "@/lib/data";
 import { Search } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
@@ -11,51 +11,6 @@ export default function ProductsPageClient() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [sortBy, setSortBy] = useState("relevantes");
   const [searchQuery, setSearchQuery] = useState("");
-
-  // Add structured data for product listing page
-  useEffect(() => {
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: "Catálogo de Produtos - Renda Filé Artesanal",
-      description:
-        "Coleção completa de roupas artesanais em renda filé: vestidos, saias e calças exclusivas feitas à mão",
-      url: `${window.location.origin}/products`,
-      mainEntity: {
-        "@type": "ItemList",
-        numberOfItems: products.length,
-        itemListElement: products.map((product, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          url: `${window.location.origin}/products/${product.id}`,
-        })),
-      },
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = "products-listing-structured-data";
-    script.text = JSON.stringify(structuredData);
-
-    // Remove any existing structured data script for products listing
-    const existingScript = document.getElementById(
-      "products-listing-structured-data"
-    );
-    if (existingScript) {
-      document.head.removeChild(existingScript);
-    }
-
-    document.head.appendChild(script);
-
-    return () => {
-      const scriptToRemove = document.getElementById(
-        "products-listing-structured-data"
-      );
-      if (scriptToRemove && scriptToRemove.parentNode) {
-        scriptToRemove.parentNode.removeChild(scriptToRemove);
-      }
-    };
-  }, []);
 
   // Filter and sort products
   const filteredAndSortedProducts = useMemo(() => {
