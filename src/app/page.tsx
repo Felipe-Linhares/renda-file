@@ -4,6 +4,7 @@ import { products, testimonials } from "@/lib/data";
 import { getAssetPath } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -13,6 +14,126 @@ import SEOContent from "./components/SEOContent";
 
 export default function Home() {
   const featuredProducts = products.slice(0, 6);
+
+  // Add structured data for organization and website
+  useEffect(() => {
+    const structuredData = [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Renda Filé Artesanal",
+        description:
+          "Loja especializada em roupas artesanais de renda filé: vestidos, saias e calças exclusivas feitas à mão com técnicas tradicionais",
+        url: window.location.origin,
+        logo: `${window.location.origin}/svgs/logo.svg`,
+        image: `${window.location.origin}/images/vestidos/branco.jpg`,
+        telephone: "+558888476263",
+        sameAs: [`https://wa.me/558888476263`],
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "BR",
+          addressRegion: "Brasil",
+        },
+        founder: {
+          "@type": "Person",
+          name: "Artesã de Renda Filé",
+        },
+        foundingDate: "1999",
+        numberOfEmployees: "1-5",
+        areaServed: "BR",
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Catálogo de Roupas Artesanais",
+          itemListElement: [
+            {
+              "@type": "OfferCatalog",
+              name: "Vestidos de Renda Filé",
+              itemListElement: products
+                .filter((p) => p.category === "Vestidos")
+                .map((product) => ({
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Product",
+                    name: product.name,
+                    description: product.description,
+                  },
+                })),
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Saias de Renda Filé",
+              itemListElement: products
+                .filter((p) => p.category === "Saias")
+                .map((product) => ({
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Product",
+                    name: product.name,
+                    description: product.description,
+                  },
+                })),
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Calças de Renda Filé",
+              itemListElement: products
+                .filter((p) => p.category === "Calcas")
+                .map((product) => ({
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Product",
+                    name: product.name,
+                    description: product.description,
+                  },
+                })),
+            },
+          ],
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Renda Filé Artesanal - Loja Online",
+        description:
+          "Loja online especializada em roupas artesanais de renda filé feitas à mão. Vestidos, saias e calças exclusivas com técnicas tradicionais brasileiras.",
+        url: window.location.origin,
+        publisher: {
+          "@type": "Organization",
+          name: "Renda Filé Artesanal",
+        },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${window.location.origin}/products?search={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      },
+    ];
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "homepage-structured-data";
+    script.text = JSON.stringify(structuredData);
+
+    // Remove any existing structured data script for homepage
+    const existingScript = document.getElementById("homepage-structured-data");
+    if (existingScript) {
+      document.head.removeChild(existingScript);
+    }
+
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptToRemove = document.getElementById(
+        "homepage-structured-data"
+      );
+      if (scriptToRemove && scriptToRemove.parentNode) {
+        scriptToRemove.parentNode.removeChild(scriptToRemove);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">

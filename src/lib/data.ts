@@ -13,7 +13,23 @@ export interface Product {
   material: string;
 }
 
-export const categories = ["Vestidos", "Saias", "Calças"];
+// Configuração de preços por categoria - ALTERE AQUI PARA MUDAR TODOS OS PREÇOS DE UMA CATEGORIA
+export const categoryPrices = {
+  Vestidos: {
+    price: 500.0,
+    originalPrice: 650.0,
+  },
+  Saias: {
+    price: 250.0,
+    originalPrice: 350.0,
+  },
+  Calcas: {
+    price: 200.0,
+    originalPrice: 300.0,
+  },
+} as const;
+
+export const categories = ["Vestidos", "Saias", "Calças"] as const;
 
 export const products: Product[] = [
   // VESTIDOS
@@ -22,8 +38,8 @@ export const products: Product[] = [
     name: "Vestido Branco Elegante",
     description:
       "Vestido clássico em renda filé branca, perfeito para ocasiões especiais. Trabalho artesanal refinado com detalhes únicos.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/branco.jpg",
     category: "Vestidos",
     isNew: true,
@@ -36,8 +52,8 @@ export const products: Product[] = [
     name: "Vestido Azul Marinho",
     description:
       "Vestido sofisticado em renda filé azul marinho. Ideal para eventos formais e cerimônias.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/quatro-tons-azul.jpg",
     category: "Vestidos",
     isNew: false,
@@ -50,8 +66,8 @@ export const products: Product[] = [
     name: "Vestido Floral Colorido",
     description:
       "Vestido vibrante com padrão floral em renda filé multicolorida. Peça única que expressa alegria e criatividade.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/colorido.jpg",
     category: "Vestidos",
     isNew: true,
@@ -64,8 +80,8 @@ export const products: Product[] = [
     name: "Vestido Amarelo e Branco",
     description:
       "Vestido delicado em renda filé com combinação harmoniosa de amarelo e branco. Perfeito para ocasiões especiais e eventos diurnos.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/amarelo-branco.jpg",
     category: "Vestidos",
     isNew: true,
@@ -78,8 +94,8 @@ export const products: Product[] = [
     name: "Vestido Branco Clássico",
     description:
       "Vestido elegante em renda filé branca tradicional. Design atemporal que nunca sai de moda, ideal para casamentos e batizados.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/branco.jpg",
     category: "Vestidos",
     isNew: false,
@@ -92,8 +108,8 @@ export const products: Product[] = [
     name: "Vestido Caramelo",
     description:
       "Vestido sofisticado em renda filé na cor caramelo. Tom neutro versátil que combina com qualquer ocasião.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/caramelo.jpg",
     category: "Vestidos",
     isNew: false,
@@ -106,8 +122,8 @@ export const products: Product[] = [
     name: "Vestido Chocolate",
     description:
       "Vestido elegante em renda filé na cor chocolate. Tom rico e sofisticado, perfeito para eventos noturnos.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/chocolate.jpg",
     category: "Vestidos",
     isNew: false,
@@ -120,8 +136,8 @@ export const products: Product[] = [
     name: "Vestido Lavanda",
     description:
       "Vestido romântico em renda filé na cor lavanda. Tom delicado e feminino, ideal para ocasiões especiais e românticas.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/lavanda-frente.jpg",
     images: [
       "/images/vestidos/lavanda-frente.jpg",
@@ -138,8 +154,8 @@ export const products: Product[] = [
     name: "Vestido Preto Elegante",
     description:
       "Vestido clássico em renda filé preta. Peça atemporal e sofisticada, perfeita para eventos formais e coquetéis.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/preto.jpg",
     category: "Vestidos",
     isNew: false,
@@ -152,8 +168,8 @@ export const products: Product[] = [
     name: "Vestido Quatro Tons Azul",
     description:
       "Vestido único em renda filé com quatro tonalidades de azul. Design exclusivo que cria um efeito degradê encantador.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/quatro-tons-azul.jpg",
     category: "Vestidos",
     isNew: true,
@@ -166,8 +182,8 @@ export const products: Product[] = [
     name: "Vestido Quatro Tons Rosa",
     description:
       "Vestido romântico em renda filé com quatro tonalidades de rosa. Efeito degradê que transmite delicadeza e feminilidade.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/quatro-tons-rosa.jpg",
     category: "Vestidos",
     isNew: true,
@@ -180,8 +196,8 @@ export const products: Product[] = [
     name: "Vestido Quatro Tons Roxo",
     description:
       "Vestido sofisticado em renda filé com quatro tonalidades de roxo. Combinação única que expressa elegância e modernidade.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/quatro-tons-roxo.jpg",
     category: "Vestidos",
     isNew: true,
@@ -194,8 +210,8 @@ export const products: Product[] = [
     name: "Vestido Quatro Tons Verde",
     description:
       "Vestido natural em renda filé com quatro tonalidades de verde. Inspirado na natureza, transmite frescor e vitalidade.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/quatro-tons-verde.jpg",
     category: "Vestidos",
     isNew: true,
@@ -208,8 +224,8 @@ export const products: Product[] = [
     name: "Vestido Rosa Cru",
     description:
       "Vestido delicado em renda filé na cor rosa cru. Tom suave e neutro, perfeito para diversas ocasiões.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/rosa-cru.jpg",
     category: "Vestidos",
     isNew: false,
@@ -222,8 +238,8 @@ export const products: Product[] = [
     name: "Vestido Verão",
     description:
       "Vestido leve em renda filé perfeito para o verão. Design fresco e confortável para os dias mais quentes.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/verao-frente.jpg",
     images: [
       "/images/vestidos/verao-frente.jpg",
@@ -240,8 +256,8 @@ export const products: Product[] = [
     name: "Vestido Vermelho",
     description:
       "Vestido vibrante em renda filé na cor vermelha. Peça statement que chama atenção e expressa personalidade forte.",
-    price: 300.0,
-    originalPrice: 350.0,
+    price: categoryPrices["Vestidos"].price,
+    originalPrice: categoryPrices["Vestidos"].originalPrice,
     image: "/images/vestidos/vermelho-frente.jpg",
     images: [
       "/images/vestidos/vermelho-frente.jpg",
@@ -260,8 +276,8 @@ export const products: Product[] = [
     name: "Saia Bege Clássica",
     description:
       "Saia elegante em renda filé na cor bege. Tom neutro e versátil, perfeita para diversas ocasiões.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/bege.jpg",
     category: "Saias",
     isNew: false,
@@ -274,8 +290,8 @@ export const products: Product[] = [
     name: "Saia Branca Delicada",
     description:
       "Saia clássica em renda filé branca. Peça atemporal e sofisticada, ideal para ocasiões especiais.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/branco.jpg",
     category: "Saias",
     isNew: false,
@@ -288,8 +304,8 @@ export const products: Product[] = [
     name: "Saia Colorida Laranja",
     description:
       "Saia vibrante em renda filé com detalhes coloridos em laranja. Peça única que adiciona energia ao look.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/colorida-laranja.jpg",
     category: "Saias",
     isNew: true,
@@ -302,8 +318,8 @@ export const products: Product[] = [
     name: "Saia Colorida Preta",
     description:
       "Saia moderna em renda filé com detalhes coloridos em preto. Design contemporâneo e elegante.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/colorida-preta.jpg",
     category: "Saias",
     isNew: true,
@@ -316,8 +332,8 @@ export const products: Product[] = [
     name: "Saia Colorida Rosa Bebê",
     description:
       "Saia delicada em renda filé com detalhes em rosa bebê. Tom suave e feminino, perfeito para looks românticos.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/colorida-rosa-bebe.jpg",
     category: "Saias",
     isNew: true,
@@ -330,8 +346,8 @@ export const products: Product[] = [
     name: "Saia Colorida Rosa Pink",
     description:
       "Saia vibrante em renda filé com detalhes em rosa pink. Cor marcante que expressa personalidade forte.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/colorida-rosa-pink.jpg",
     category: "Saias",
     isNew: true,
@@ -344,8 +360,8 @@ export const products: Product[] = [
     name: "Saia Colorida Verde",
     description:
       "Saia natural em renda filé com detalhes em verde. Inspirada na natureza, transmite frescor e vitalidade.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/colorida-verde.jpg",
     category: "Saias",
     isNew: true,
@@ -358,8 +374,8 @@ export const products: Product[] = [
     name: "Saia Laranja Vibrante",
     description:
       "Saia energética em renda filé na cor laranja. Tom quente e alegre, perfeita para destacar sua personalidade.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/laranja.jpg",
     category: "Saias",
     isNew: false,
@@ -372,8 +388,8 @@ export const products: Product[] = [
     name: "Saia Rosa Bebê",
     description:
       "Saia romântica em renda filé na cor rosa bebê. Tom delicado e suave, ideal para ocasiões especiais.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/rosa-bebe.jpg",
     category: "Saias",
     isNew: false,
@@ -386,8 +402,8 @@ export const products: Product[] = [
     name: "Saia Rosa Pink",
     description:
       "Saia marcante em renda filé na cor rosa pink. Tom vibrante que chama atenção e expressa confiança.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/rosa-pink.jpg",
     category: "Saias",
     isNew: false,
@@ -400,8 +416,8 @@ export const products: Product[] = [
     name: "Saia Preta Elegante",
     description:
       "Saia clássica em renda filé preta. Peça atemporal e sofisticada, perfeita para eventos formais e ocasiões especiais.",
-    price: 180.0,
-    originalPrice: 220.0,
+    price: categoryPrices["Saias"].price,
+    originalPrice: categoryPrices["Saias"].originalPrice,
     image: "/images/saias/preta.jpg",
     category: "Saias",
     isNew: true,
@@ -416,8 +432,8 @@ export const products: Product[] = [
     name: "Calça Azul Claro",
     description:
       "Calça elegante em renda filé azul claro. Perfeita para o verão, combina sofisticação com frescor e leveza.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/azul-claro.jpg",
     category: "Calças",
     isNew: true,
@@ -430,8 +446,8 @@ export const products: Product[] = [
     name: "Calça Azul Marinho",
     description:
       "Calça sofisticada em renda filé azul marinho. Ideal para ocasiões formais, oferece elegância e conforto.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/azul.jpg",
     category: "Calças",
     isNew: true,
@@ -444,8 +460,8 @@ export const products: Product[] = [
     name: "Calça Branco e Azul",
     description:
       "Calça única com detalhes em branco e azul. Design exclusivo que combina tradição e modernidade.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/banco-azul.jpg",
     category: "Calças",
     isNew: true,
@@ -458,8 +474,8 @@ export const products: Product[] = [
     name: "Calça Branca Clássica",
     description:
       "Calça clássica em renda filé branca. Peça versátil e atemporal, perfeita para diversas ocasiões.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/branca.jpg",
     category: "Calças",
     isNew: true,
@@ -472,8 +488,8 @@ export const products: Product[] = [
     name: "Calça Chocolate",
     description:
       "Calça em tom chocolate, elegante e sofisticada. Cor neutra que combina com diversos looks.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/chocolate.jpg",
     category: "Calças",
     isNew: true,
@@ -486,8 +502,8 @@ export const products: Product[] = [
     name: "Calça Colorida Especial",
     description:
       "Calça com padrão colorido único. Peça especial para quem busca originalidade e estilo diferenciado.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/colorido.jpg",
     category: "Calças",
     isNew: true,
@@ -500,8 +516,8 @@ export const products: Product[] = [
     name: "Calça Cru Natural",
     description:
       "Calça em tom cru natural. Elegância sutil e sofisticada, perfeita para looks despojados e chiques.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/cru.jpg",
     category: "Calças",
     isNew: true,
@@ -514,8 +530,8 @@ export const products: Product[] = [
     name: "Calça Rosa Dupla",
     description:
       "Calça com detalhes em dois tons de rosa. Design exclusivo que expressa feminilidade e delicadeza.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/dois-rosas.jpg",
     category: "Calças",
     isNew: true,
@@ -528,8 +544,8 @@ export const products: Product[] = [
     name: "Calça Laranja Vibrante",
     description:
       "Calça em tom laranja vibrante. Perfeita para quem gosta de cores marcantes e looks cheios de personalidade.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/laranja.jpg",
     category: "Calças",
     isNew: true,
@@ -542,8 +558,8 @@ export const products: Product[] = [
     name: "Calça Preta Elegante",
     description:
       "Calça clássica em renda filé preta. Peça coringa do guarda-roupa, elegante e versátil para todas as ocasiões.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/preto.jpg",
     category: "Calças",
     isNew: true,
@@ -556,8 +572,8 @@ export const products: Product[] = [
     name: "Calça Rosa Claro",
     description:
       "Calça em rosa claro delicado. Feminina e suave, ideal para looks românticos e sofisticados.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/rosa-claro.jpg",
     category: "Calças",
     isNew: true,
@@ -570,8 +586,8 @@ export const products: Product[] = [
     name: "Calça Rosa Tradicional",
     description:
       "Calça em rosa tradicional. Cor clássica e feminina, perfeita para diversas ocasiões especiais.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/rosa.jpg",
     category: "Calças",
     isNew: true,
@@ -584,8 +600,8 @@ export const products: Product[] = [
     name: "Calça Verde Ciano",
     description:
       "Calça em verde ciano exclusivo. Cor diferenciada que traz modernidade e frescor ao visual.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/verde-ciano.jpg",
     category: "Calças",
     isNew: true,
@@ -598,8 +614,8 @@ export const products: Product[] = [
     name: "Calça Verde Clássica",
     description:
       "Calça em verde clássico. Cor da natureza que transmite tranquilidade e elegância natural.",
-    price: 160.0,
-    originalPrice: 200.0,
+    price: categoryPrices["Calcas"].price,
+    originalPrice: categoryPrices["Calcas"].originalPrice,
     image: "/images/calcas/verde.jpg",
     category: "Calças",
     isNew: true,
