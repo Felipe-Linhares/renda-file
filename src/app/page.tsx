@@ -41,54 +41,6 @@ export default function Home() {
         foundingDate: "1999",
         numberOfEmployees: "1-5",
         areaServed: "BR",
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Catálogo de Roupas Artesanais",
-          itemListElement: [
-            {
-              "@type": "OfferCatalog",
-              name: "Vestidos de Renda Filé",
-              itemListElement: products
-                .filter((p) => p.category === "Vestidos")
-                .map((product) => ({
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Product",
-                    name: product.name,
-                    description: product.description,
-                  },
-                })),
-            },
-            {
-              "@type": "OfferCatalog",
-              name: "Saias de Renda Filé",
-              itemListElement: products
-                .filter((p) => p.category === "Saias")
-                .map((product) => ({
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Product",
-                    name: product.name,
-                    description: product.description,
-                  },
-                })),
-            },
-            {
-              "@type": "OfferCatalog",
-              name: "Calças de Renda Filé",
-              itemListElement: products
-                .filter((p) => p.category === "Calcas")
-                .map((product) => ({
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Product",
-                    name: product.name,
-                    description: product.description,
-                  },
-                })),
-            },
-          ],
-        },
       },
       {
         "@context": "https://schema.org",

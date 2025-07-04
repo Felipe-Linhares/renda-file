@@ -16,43 +16,20 @@ export default function ProductsPageClient() {
   useEffect(() => {
     const structuredData = {
       "@context": "https://schema.org",
-      "@type": "ItemList",
+      "@type": "CollectionPage",
       name: "Catálogo de Produtos - Renda Filé Artesanal",
       description:
         "Coleção completa de roupas artesanais em renda filé: vestidos, saias e calças exclusivas feitas à mão",
       url: `${window.location.origin}/products`,
-      numberOfItems: products.length,
-      itemListElement: products.map((product, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        item: {
-          "@type": "Product",
-          name: product.name,
-          description: product.description,
-          image: product.image.startsWith("http")
-            ? product.image
-            : `${window.location.origin}${product.image}`,
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: products.length,
+        itemListElement: products.map((product, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
           url: `${window.location.origin}/products/${product.id}`,
-          sku: product.id,
-          brand: {
-            "@type": "Brand",
-            name: "Renda Filé Artesanal",
-          },
-          category: product.category,
-          offers: {
-            "@type": "Offer",
-            price: product.price.toString(),
-            priceCurrency: "BRL",
-            availability: product.inStock
-              ? "https://schema.org/InStock"
-              : "https://schema.org/OutOfStock",
-            seller: {
-              "@type": "Organization",
-              name: "Renda Filé Artesanal",
-            },
-          },
-        },
-      })),
+        })),
+      },
     };
 
     const script = document.createElement("script");

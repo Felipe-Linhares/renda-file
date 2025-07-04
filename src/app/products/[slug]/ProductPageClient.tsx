@@ -44,10 +44,7 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
         name: "Renda Filé Artesanal",
       },
       category: product.category,
-      material: product.material,
       sku: product.id,
-      gtin: product.id,
-      mpn: product.id,
       offers: {
         "@type": "Offer",
         price: product.price.toString(),
@@ -59,11 +56,10 @@ export default function ProductPageClient({ slug }: ProductPageClientProps) {
         seller: {
           "@type": "Organization",
           name: "Renda Filé Artesanal",
-          url: window.location.origin,
         },
         priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
           .toISOString()
-          .split("T")[0], // 1 year from now
+          .split("T")[0],
         itemCondition: "https://schema.org/NewCondition",
       },
       aggregateRating: {
